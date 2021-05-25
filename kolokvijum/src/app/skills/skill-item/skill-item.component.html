@@ -1,0 +1,12 @@
+<div class="skill-item" [class.sale]="skill.isExceptional">
+  <div class="image"><img [src]="skill.imageUrl"></div>
+  <div class="details">
+    <div class="name">{{skill.name}}</div>
+    <div class="price">$ {{skill.description}}</div>
+    <div>
+      <button class="decrement" *ngIf="skill.rating > 0" (click)="decrementInCart()">-</button>
+      <span class="qty">{{skill.rating}}</span>
+      <button class="increment" (click)="incrementInCart()">+</button>
+    </div>
+  </div>
+</div>

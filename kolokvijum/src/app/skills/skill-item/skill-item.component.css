@@ -1,0 +1,14 @@
+.skill-item {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 10px;
+  display: inline-block;
+}
+
+.skill-item .details {
+  text-align: center;
+}
+
+.skill-item.sale {
+  background-color: lightseagreen;
+}

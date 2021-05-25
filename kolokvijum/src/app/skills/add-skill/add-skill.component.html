@@ -1,0 +1,45 @@
+<h3>
+  Create skill
+</h3>
+
+<div>
+  <h4 class="error">{{message}}</h4>
+  <form (ngSubmit)="createSkill(skillForm)" #skillForm="ngForm">
+    <div ngModelGroup="skill">
+      <div>
+        <input type="text" ngModel #skillName="ngModel" name="name" placeholder="skill Name" required />
+      </div>
+      <div class="error" *ngIf="(skillName.dirty  || message) && skillName.invalid">
+        <!-- Cheating, since there is only one way the skill name field could be invalid -->
+        skill name is required
+      </div>
+      <div>
+        <input type="text" ngModel #skillName="ngModel" name="description" placeholder="skill description" required />
+      </div>
+      <div>
+        <input type="number" ngModel name="rating" placeholder="skill rating" #skillPrice="ngModel" required>
+      </div>
+      <div class="error" *ngIf="(skillPrice.dirty || message) && skillPrice.invalid">
+        <!-- Cheating, since there is only one way the skill name field could be invalid -->
+        skill price is required
+      </div>
+      <div>
+        <input type="text" ngModel name="imageUrl" placeholder="skill Image URL" #imageUrl="ngModel"
+          pattern="^http(s?)\://[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(/\S*)?$" required>
+      </div>
+      <div class="error" *ngIf="(imageUrl.dirty || message) && imageUrl.invalid">
+        <div *ngIf="imageUrl.errors.required">
+          skill Image URL is required
+        </div>
+        <div *ngIf="imageUrl.errors.pattern">
+          skill Image URL does not seem to be a valid URL
+        </div>
+      </div>
+      <div>
+        <input type="checkbox" ngModel name="isExceptional">
+        On Sale
+      </div>
+    </div>
+    <button type="submit">Create</button>
+  </form>
+</div>
