@@ -10,16 +10,18 @@ import { SkillRatingChange } from 'src/app/model/skill-rating-change';
 })
 export class SkillItemComponent {
  
+  @Input() public skill: Skill;
+  @Output() ratingChange: EventEmitter<SkillRatingChange> = new EventEmitter();
+
+
   constructor() { }
 
   incrementInCart() {
-    this.quantityChange.emit({skill: this.skill, changeInRating: 1});
+    this.ratingChange.emit({skill: this.skill, changeInRating: 1})
   }
 
   decrementInCart() {
-    if (this.skill.rating > 0) {
-      this.quantityChange.emit({skill: this.skill, changeInRating: -1});
-    }
+    this.ratingChange.emit({skill: this.skill, changeInRating: -1})
   }
 
 }

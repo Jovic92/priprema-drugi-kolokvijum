@@ -40,11 +40,14 @@ var checkIfLoggedIn = (req, res, next) => {
 
 router.get('/', (req, res) => {
   var query = (req.query['q'] || '').toLowerCase();
+  console.log("7777777777777777777777")
   if (query) {
     const foundProducts = products.filter(
       (product) => product.name.toLowerCase().indexOf(query) != -1);
     return res.status(200).json(foundProducts);
   }
+  console.log("7777777777777777777777")
+
   return res.status(200).json(products);
 });
 
@@ -67,19 +70,25 @@ router.post('/', checkIfLoggedIn, (req, res) => {
   }
 
   product.id = products.length + 1;
-  product.quantityInCart = 0;
+  product.rating = 0;
   products.push(product);
   return res.status(200).json(product);
 });
 
 router.patch('/:id', checkIfLoggedIn, (req, res) => {
   let productId = req.params.id;
+  console.log("4444444444444444444444444")
+
   const foundProduct = products.find((product) => product.id == productId);
+  console.log("000000000000")
+
   if (foundProduct) {
     let changeInQuantity = req.body.changeInQuantity;
-    foundProduct.quantityInCart += changeInQuantity;
+    foundProduct.rating += changeInQuantity;
     return res.status(200).json({msg: 'Successfully updated cart'});
   }
+  console.log("555555555555")
+
   return res.status(400).json({msg: 'Product with id ' + productId + ' not found.'});
 });
 

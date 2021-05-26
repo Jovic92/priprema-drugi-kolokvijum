@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from "@angular/router";
+import { Observable } from "rxjs";
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -9,12 +10,10 @@ export class AuthGuard implements CanActivate {
     }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-
-        console.log("Auth is being called")
         if (localStorage.getItem("token")) {
             return true;
         }
-        this.router.navigate(['login']);
-        return false;
+        this.router.navigate(['login'])
     }
+
 }
